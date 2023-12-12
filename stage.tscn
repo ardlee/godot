@@ -1,16 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7f73hdton2y4"]
+[gd_scene load_steps=8 format=3 uid="uid://b7f73hdton2y4"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_3rexf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4gmcr"]
-size = Vector3(30, 1, 30)
+size = Vector3(100, 1, 100)
 
 [sub_resource type="BoxMesh" id="BoxMesh_a8vuo"]
-size = Vector3(30, 1, 30)
+size = Vector3(100, 1, 100)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_nlqja"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d3vcf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8qg81"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xvx1r"]
 
 [node name="Stage" type="Node3D"]
 
@@ -29,6 +33,7 @@ shape = SubResource("BoxShape3D_4gmcr")
 mesh = SubResource("BoxMesh_a8vuo")
 
 [node name="Player" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13064, 0)
 lock_rotation = true
 script = ExtResource("1_3rexf")
 
@@ -47,3 +52,12 @@ shape = SubResource("CapsuleShape3D_d3vcf")
 
 [node name="Camera3D" type="Camera3D" parent="Player/TwistPivot/PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.943223, 0.332161, 0, -0.332161, 0.943223, 0, 2, 0.3)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4886, 1.13064, -17.8791)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_8qg81")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_xvx1r")
